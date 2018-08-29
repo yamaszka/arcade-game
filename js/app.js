@@ -89,6 +89,46 @@ Player.prototype.handleInput = function(keyEnter) {
   }
 };
 
+//daiamont function
+var Daiamont = function(x, y, speed, sprite) {
+    // Variables applied to each of our instances go here,
+    // we've provided one for you to get started
+    this.x = x;
+    this.y = y;
+    this.speed = speed;
+    this.sprite = sprite;
+};
+
+// Update the daiamont's position, required method for game
+// Parameter: dt, a time delta between ticks
+Enemy.prototype.update = function(dt) {
+    // You should multiply any movement by the dt parameter
+    // which will ensure the game runs at the same speed for
+    // all computers.
+    this.x += this.speed * dt;
+
+    //Reset daiamont position when it leave the screan
+    if (this.x > 550) {
+           this.x = -100;
+       }
+
+     //Colisions and adding the score
+     if (player.x < this.x + 50 &&
+        player.x > this.x - 50&&
+        player.y < this.y + 50 &&
+        player.y > this.y - 50) {
+
+            score+=10;
+
+     }//if
+};
+
+// Draw the diamont on the screen, required method for game
+Enemy.prototype.render = function() {
+    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+};
+
+
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
@@ -100,6 +140,10 @@ var enemy4 = new Enemy(-100,240,200);
 
 
 allEnemies.push(enemy, enemy2, enemy3, enemy4);
+
+var diamont1 = new Daiamont(-100, 120, 50, 'Gem Green.png');
+var diamont2 = new Daiamont(-100, 280, 400, 'Gem Orange.png')
+
 var player = new Player(200,400,50);
 
 
@@ -116,8 +160,7 @@ document.addEventListener('keyup', function(e) {
     player.handleInput(allowedKeys[e.keyCode]);
 });
 
-//	Simple example of using private variables
-//
+
 //	To start the stopwatch:
 //		obj.start();
 //
