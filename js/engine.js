@@ -98,6 +98,7 @@ var Engine = (function(global) {
             diamont.update(dt);
         });
         player.update();
+        heart.update();
 
     }
 
@@ -162,6 +163,7 @@ var Engine = (function(global) {
         });
 
         player.render();
+        heart.render();
 
     }
 
@@ -185,7 +187,8 @@ var Engine = (function(global) {
         'images/char-boy.png',
         'images/Heart.png',
         'images/GemGreen.png',
-        'images/Gem Blue.png'
+        'images/Gem Blue.png',
+        'images/Rock.png'
     ]);
     Resources.onReady(init);
 
