@@ -52,6 +52,49 @@ Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
+var Diamont = function(x, y, speed) {
+    // Variables applied to each of our instances go here,
+    // we've provided one for you to get started
+    this.x = x;
+    this.y = y;
+    this.speed = speed;
+    // The image/sprite for our enemies, this uses
+    // a helper we've provided to easily load images
+    this.sprite = 'images/Heart.png';
+};
+
+// Update the enemy's position, required method for game
+// Parameter: dt, a time delta between ticks
+Diamont.prototype.update = function(dt) {
+    // You should multiply any movement by the dt parameter
+    // which will ensure the game runs at the same speed for
+    // all computers.
+    this.x += this.speed * dt;
+
+    //Reset enemy position when it leave the screan
+    if (this.x > 550) {
+           this.x = -100;
+       }
+
+     //Colisions and reset the player after themselves
+     if (player.x < this.x + 50 &&
+        player.x > this.x - 50&&
+        player.y < this.y + 50 &&
+        player.y > this.y - 50) {
+
+            player.x = 200;
+            player.y = 400;
+            score+=20;
+            showScore();
+
+     }//if
+};
+
+// Draw the enemy on the screen, required method for game
+Diamont.prototype.render = function() {
+    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+};
+
 // Now write your own player class
 // This class requires an update(), render() and
 // a handleInput() method.
@@ -114,6 +157,9 @@ var enemy4 = new Enemy(-100,240,200);
 
 
 allEnemies.push(enemy, enemy2, enemy3, enemy4);
+
+var diamont = new Diamont(100,280,200);
+
 var player = new Player(200,400,50);
 
 
