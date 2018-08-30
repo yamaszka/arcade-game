@@ -52,7 +52,7 @@ Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
-var Diamont = function(x, y, speed) {
+var Diamont = function(x, y, speed, sprite) {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
     this.x = x;
@@ -60,7 +60,7 @@ var Diamont = function(x, y, speed) {
     this.speed = speed;
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
-    this.sprite = 'images/Heart.png';
+    this.sprite = sprite;
 };
 
 // Update the enemy's position, required method for game
@@ -77,14 +77,14 @@ Diamont.prototype.update = function(dt) {
        }
 
      //Colisions and reset the player after themselves
-     if (player.x < this.x + 50 &&
-        player.x > this.x - 50&&
-        player.y < this.y + 50 &&
-        player.y > this.y - 50) {
+     if ((player.x < this.x + 50) &&
+        (player.x > this.x - 50) &&
+        (player.y < this.y + 50) &&
+        (player.y > this.y - 50)) {
 
-            player.x = 200;
-            player.y = 400;
-            score+=20;
+            this.x = -100;
+
+            score+=5;
             showScore();
 
      }//if
@@ -150,15 +150,16 @@ Player.prototype.handleInput = function(keyEnter) {
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
 var allEnemies = [];
-var enemy = new Enemy(-100,320,100);
-var enemy2 = new Enemy(-100,160,100);
-var enemy3 = new Enemy(-100,80,300);
-var enemy4 = new Enemy(-100,240,200);
+//var enemy = new Enemy(-100,320,100);
+//var enemy2 = new Enemy(-100,160,100);
+//var enemy3 = new Enemy(-100,80,300);
+//var enemy4 = new Enemy(-100,240,200);
+//allEnemies.push(enemy, enemy2, enemy3, enemy4);
 
-
-allEnemies.push(enemy, enemy2, enemy3, enemy4);
-
-var diamont = new Diamont(100,280,200);
+var diamonts=[];
+var diamont1 = new Diamont(100,320,50, 'images/GemGreen.png');
+var diamont2 = new Diamont(100,150,400, 'images/Gem Blue.png');
+diamonts.push(diamont1, diamont2);
 
 var player = new Player(200,400,50);
 

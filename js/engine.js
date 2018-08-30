@@ -93,8 +93,12 @@ var Engine = (function(global) {
         allEnemies.forEach(function(enemy) {
             enemy.update(dt);
         });
+
+        diamonts.forEach(function(diamont) {
+            diamont.update(dt);
+        });
         player.update();
-        diamont.update(dt);
+
     }
 
     /* This function initially draws the "game level", it will then call
@@ -153,9 +157,12 @@ var Engine = (function(global) {
         allEnemies.forEach(function(enemy) {
             enemy.render();
         });
+        diamonts.forEach(function(diamont) {
+            diamont.render();
+        });
 
         player.render();
-        diamont.render();
+
     }
 
     /* This function does nothing but it could have been a good place to
@@ -176,7 +183,9 @@ var Engine = (function(global) {
         'images/grass-block.png',
         'images/enemy-bug.png',
         'images/char-boy.png',
-        'images/Heart.png'
+        'images/Heart.png',
+        'images/GemGreen.png',
+        'images/Gem Blue.png'
     ]);
     Resources.onReady(init);
 
